@@ -1,0 +1,23 @@
+$primaryColor: #34495e;
+$green: #2ecc71;
+$white: white;
+$pink: #FE6B6B;
+
+// BACKGROUND
+.bg-green{
+    background: $green;
+    color: $white;
+    
+    &:hover{
+        color: $white;
+    }
+}
+
+.bg-pink{
+    background: $pink;
+    color: $white;
+    
+    &:hover{
+        color: $white;
+    }
+}

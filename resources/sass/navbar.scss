@@ -1,0 +1,20 @@
+@import 'variables';
+
+// NAVBAR
+.navbar-brand{
+    font-weight: bold;
+}
+.nav-link{
+    color: $primaryColor !important;
+    font-size: 19px;
+}
+
+.dropdown-menu{
+    border: none;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+
+    .dropdown-item{
+        color: $primaryColor !important;
+        font-size: 19px;
+    }
+}
