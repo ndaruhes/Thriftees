@@ -5,7 +5,9 @@
     <div class="d-flex justify-content-center mt-5">
         <div class="col-md-8">
             @if (session('status'))
-                <div class="alert alert-success"><i class="uil uil-check me-1"></i>{{ session('status') }}</div>
+                <div class="alert alert-success"><i class="uil uil-check ms-1"></i>
+                    {{ session('status') }}
+                </div>
             @endif
 
             <h1 class="fs-3 mb-5"><i class="uil uil-history me-1"></i> KELOLA PESANAN</h1>
@@ -46,7 +48,8 @@
                                     <td>
                                         <b>INV</b>{{ $order->nomor_invoice }}
                                         <br>
-                                        <span class="badge bg-warning text-dark">{{ $order->status }}</span>
+                                        <span
+                                            class="badge @if ($order->status == 'Pending') bg-warning text-dark @else bg-success @endif">{{ $order->status }}</span>
                                     </td>
                                     <td>{{ $order->jumlah_pesanan }}</td>
                                     <td>Rp{{ number_format($order->barang->harga_barang) }}</td>
@@ -56,11 +59,12 @@
                                             <a href="#" data-uri="{{ route('terimaPesanan', $order->id) }}"
                                                 data-bs-toggle="modal" data-bs-target="#konfirmasiTerimaPesananModal"
                                                 class="btn btn-success btn-sm fs-6 fw-bold text-white">
-                                                <i class="uil uil-check me-1"></i> Terima
+                                                Terima<i class="uil uil-check-circle ms-1"></i>
                                             </a>
                                         @else
-                                            <a href="#" class="btn btn-secondary btn-sm fs-6 fw-bold text-white cursor-disabled">
-                                                <i class="uil uil-check-circle me-1"></i> Sudah Diterima
+                                            <a href="#"
+                                                class="btn btn-secondary btn-sm fs-6 fw-bold text-white cursor-disabled">
+                                                Sudah Diterima 😊
                                             </a>
                                         @endif
                                     </td>
@@ -105,7 +109,8 @@
                                     <td>
                                         <b>INV</b>{{ $order->nomor_invoice }}
                                         <br>
-                                        <span class="badge bg-warning text-dark">{{ $order->status }}</span>
+                                        <span
+                                            class="badge @if ($order->status == 'Pending') bg-warning text-dark @else bg-success @endif">{{ $order->status }}</span>
                                     </td>
                                     <td>{{ $order->jumlah_pesanan }}</td>
                                     <td>Rp{{ number_format($order->barang->harga_barang) }}</td>
