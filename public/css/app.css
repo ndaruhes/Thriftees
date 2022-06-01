@@ -25,6 +25,10 @@ body {
   background: white !important;
 }
 
+.cursor-disabled {
+  cursor: not-allowed;
+}
+
 .item .item-content {
   border-radius: 10px;
   margin-bottom: 20px;

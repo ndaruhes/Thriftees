@@ -6,13 +6,15 @@ use App\Models\Barang;
 use App\Models\Kategori;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
 class BarangController extends Controller
 {
     public function index()
     {
-        $barang = Barang::get();
+        $barang = Barang::where('id_owner', Auth::user()->id)->get();
         $kategori = Kategori::get();
         return view('barang.index', compact('barang', 'kategori'));
     }
@@ -25,8 +27,10 @@ class BarangController extends Controller
 
     public function edit($id)
     {
-        $barang = Barang::where('id', '=', $id)->get();
-        $barang = $barang[0];
+        $barang = Barang::findOrFail($id);
+        if($barang->id_owner != Auth::user()->id) {
+            return redirect()->route('allBarang');
+        }
         $kategori = Kategori::get();
         return view('barang.edit', compact('barang', 'kategori'));
     }
@@ -49,12 +53,13 @@ class BarangController extends Controller
         $Image = $fileName . "-" . Str::random(10) . "-" . date('YmdHis') . "." . $extension;
         $files->storeAs('public/images/barang', $Image);
 
-        Barang::create([
+        DB::table('barang')->insert([
             'foto_barang' => $Image,
             'nama_barang' => $request->nama_barang,
             'harga_barang' => $request->harga_barang,
             'jumlah_barang' => $request->stok,
             'deskripsi_barang' => $request->deskripsi_barang,
+            'user_id' => Auth::user()->id,
             'kategori_id' => $request->kategori,
         ]);
 

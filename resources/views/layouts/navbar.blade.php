@@ -29,11 +29,11 @@
                         </li>
                     @endif
                 @else
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url('barang') }}"><i class="uil uil-cube me-1"></i>
+                        Kelola Barang</a>
+                </li>
                     @if (Auth::user()->role == 'Admin')
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ url('barang') }}"><i class="uil uil-cube me-1"></i>
-                                Kelola Barang</a>
-                        </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('kategori.index') }}"><i
                                     class="uil uil-books me-1"></i> Kelola Kategori</a>

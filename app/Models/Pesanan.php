@@ -11,7 +11,8 @@ class Pesanan extends Model
     protected $table = 'pesanan';
     protected $fillable = [
         'id_barang',
-        'id_user',
+        'id_owner',
+        'id_pemesan',
         'jumlah_pesanan',
         'alamat',
         'kode_pos',
@@ -25,8 +26,13 @@ class Pesanan extends Model
         return $this->belongsTo('App\Models\Barang', 'id_barang', 'id');
     }
 
-    public function user()
+    public function owner()
     {
-        return $this->belongsTo('App\Models\User', 'id_user', 'id');
+        return $this->belongsTo('App\Models\User', 'id_owner', 'id');
+    }
+
+    public function pemesan()
+    {
+        return $this->belongsTo('App\Models\User', 'id_pemesan', 'id');
     }
 }

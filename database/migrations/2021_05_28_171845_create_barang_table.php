@@ -21,6 +21,7 @@ class CreateBarangTable extends Migration
             $table->string('foto_barang');
             $table->string('deskripsi_barang');
             $table->string('kategori_id');
+            $table->string('id_owner');
             $table->timestamps();
         });
     }

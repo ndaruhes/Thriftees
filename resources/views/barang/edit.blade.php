@@ -69,9 +69,9 @@
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="">Deskripsi Barang</label>
-                        <textarea rows="5" class="form-control description @error('deskripsi_barang') is-invalid @enderror"
+                        <textarea rows="5" class="form-control description  @error('deskripsi_barang') is-invalid @enderror" 
                             placeholder="Masukkan deskripsi barang"
-                            name="deskripsi_barang">{{ old('deskripsi_barang') }}</textarea>
+                            name="deskripsi_barang">{{ $barang->deskripsi_barang }}</textarea>
                         @error('deskripsi_barang')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>

@@ -21,4 +21,9 @@ class Barang extends Model
     {
         return $this->belongsTo('App\Models\Kategori', 'kategori_id', 'id');
     }
+
+    public function owner()
+    {
+        return $this->belongsTo('App\Models\User', 'id_owner', 'id');
+    }
 }

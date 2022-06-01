@@ -15,9 +15,9 @@ class PesananController extends Controller
         if (!Auth::user()) {
             return redirect()->route('allBarang');
         } else {
-            $pesanan = Pesanan::get();
-            $pesananPending = Pesanan::where('status', '=', 'Pending')->get();
-            return view('pesanan.index', compact('pesanan', 'pesananPending'));
+            $ownerOrder = Pesanan::where('id_owner', Auth::user()->id)->get();
+            $customerOrder = Pesanan::where('id_pemesan', Auth::user()->id)->get();
+            return view('pesanan.index', compact('ownerOrder', 'customerOrder'));
         }
     }
 
@@ -39,7 +39,8 @@ class PesananController extends Controller
 
         Pesanan::create([
             'id_barang' => $idBarang,
-            'id_user' => Auth::user()->id,
+            'id_owner' => $barang->owner->id,
+            'id_pemesan' => Auth::user()->id,
             'jumlah_pesanan' => $request->jumlah_pesanan,
             'alamat' => $request->alamat,
             'kode_pos' => $request->kode_pos,
